@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from importlib.metadata import version, PackageNotFoundError
 from .errors import ArgumentError, CoordinateRangeError           # noqa:F401
 from .errors import InvalidEnumError, MissingExifDataError        # noqa:F401
 from .errors import ModelDataError                                # noqa:F401
@@ -12,5 +13,7 @@ from .iris_landmark import iris_depth_in_mm_from_landmarks        # noqa:F401
 from .iris_landmark import iris_landmarks_to_render_data          # noqa:F401
 from .iris_landmark import iris_roi_from_face_landmarks           # noqa:F401
 
-
-__version__ = '0.6.0'
+try:
+    __version__ = version("face-detection-tflite")
+except PackageNotFoundError:
+    __version__ = "unknown"
